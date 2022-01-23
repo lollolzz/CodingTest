@@ -1,0 +1,26 @@
+1. 입력하지 않고 알파벳 리스트를 만드는 방법
+
+from string import ascii_lowercase
+ 
+alpha_list = list(ascii_lowercase)
+
+2. 리스트배열을 문자열로 변환
+
+A = ["a/b/c","d","e"]
+
+String = ''.join(A)
+
+print(String)
+
+= a/b/cde
+
+-> 요소들 사이에 특정문자열을 추가하여 문자열로 변환
+string = '/'.join(A)
+
+-> 문자열을 리스트로 변환
+A = "국어,수학,정보,영어,체육"
+A_list = A.split(",")
+
+print(A_list)
+
+= ['국어','수학','정보','영어','체육']
