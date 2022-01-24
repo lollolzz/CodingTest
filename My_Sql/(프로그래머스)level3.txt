@@ -37,3 +37,32 @@ LIMIT 2
 # ORDER BY 에도 연산이 가능하다 
 # B에서 A를 뺀 것은 보호기간을 구하기 위해서이다.
 # LIMIT2를 한 이유는 입양을 간 동물이 2마리 이상인 경우를 출력하기 위하여이다.
+
+4. 있었는데요 없었습니다.
+
+SELECT A.ANIMAL_ID, A.NAME
+FROM ANIMAL_INS AS A 
+JOIN ANIMAL_OUTS AS B
+ON A.ANIMAL_ID = B.ANIMAL_ID
+WHERE A.DATETIME > B.DATETIME
+ORDER BY A.DATETIME
+
+# WHERE A.DATETIME > B.DATETIME 
+# 보호시작일(A)보다 입양일(B)이 더 빠른 쪽을 출력해야하므로 
+# 위와 같이 작성
+
+5. 헤비 유저가 소유한 장소
+
+SELECT ID, NAME, HOST_ID
+FROM PLACES
+WHERE HOST_ID IN (
+    SELECT HOST_ID FROM PLACES
+    GROUP BY HOST_ID HAVING COUNT(ID)>1)
+ORDER BY ID
+
+# WHERE HOST_ID IN (
+#     SELECT HOST_ID FROM PLACES
+#     GROUP BY HOST_ID HAVING COUNT(ID)>1)
+# WHERE을 저렇게 사용한 이유는 
+# HOST_ID를 묶어서 2개 이상을 뽑아내야하기 때문
+# HAVING COUNT(ID)>1 은 1을 초과한다는 것은 2이상을 나타내기 때문이다
