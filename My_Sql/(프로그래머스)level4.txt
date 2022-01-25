@@ -1,0 +1,49 @@
+1. 입양 시각 구하기(2)
+
+SET @HOUR = -1;
+SELECT (@HOUR := @HOUR +1) AS HOUR,
+    (SELECT COUNT(HOUR(DATETIME)) 
+    FROM ANIMAL_OUTS 
+    WHERE HOUR(DATETIME)=@HOUR) AS COUNT 
+    FROM ANIMAL_OUTS
+WHERE @HOUR < 23;
+
+# 이 문제는 0~6시까지의 데이터를 따로 생성해줘야 한다. 
+# 이 문제에서는 SET 명령어를 사용해야 한다.
+# SET은 어떤 변수에 특정 값을 할당할때 쓰는 명령어이다.
+# HOUR 변수를 -1로 선언하여서 22까지 +1씩 더해주었다. -1부터 더했기 때문에 0부터 23까지 생성이 된다.
+# ANIMAL_OUTS 테이블에 있는 DATETIME 변수와 @HOUR 변수가 동일한 순간 카운트를 진행한다.
+
+## 조금 더 이해와 유연한 사고가 필요한 문제... 어렵다....
+
+2. 우유와 요거트가 담긴 장바구니
+
+SELECT CART_ID
+FROM CART_PRODUCTS
+WHERE NAME IN ('Milk','Yogurt')
+GROUP BY CART_ID
+HAVING COUNT(DISTINCT NAME)=2
+
+# HAVING COUNT(DISTINCT NAME)=2 
+# GROUP BY CART_ID 한거에서
+# CART_I에 두가지 데이터(Milk, Yogurt)만 들어가게 중복제거하고 
+# NAME의 COUNT가 2개인걸 출력하겠다 !!!! 
+# 대충 이런거 같음
+
+## 나는 WHERE절에 SELECT문을 추가해서 풀다가 실패...
+## 다른 사람 풀이 보면 WHERE절에 SELECT문을 두개 추가해서 풀던데 
+## 눈에 확 들어오지 않아 위의 해설을 선택해서 풀이
+
+3. 보호소에서 중성화한 동물
+
+SELECT A.ANIMAL_ID, A.ANIMAL_TYPE, A.NAME
+FROM ANIMAL_INS AS A
+LEFT OUTER JOIN ANIMAL_OUTS AS B
+ON A.ANIMAL_ID = B.ANIMAL_ID
+WHERE A.SEX_UPON_INTAKE LIKE "INTACT%"
+AND B.SEX_UPON_OUTCOME NOT LIKE "INTACT%";
+
+# LEFT OUTER JOIN을 사용해서 A테이블에 B테이블을 붙여
+# 두 테이블의 SEX_UPON관련 항목들을 비교한 후 
+# WHERE절에서 INTACT문구 여부로 A에서 중성화 안되었다가 
+# B에서 중성화 된 동물들을 출력
