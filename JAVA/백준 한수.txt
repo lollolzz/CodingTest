@@ -1,0 +1,59 @@
+package com.coding;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+ 
+	public static void main(String[] args) throws IOException {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		System.out.print(arithmetic_sequence(Integer.parseInt(br.readLine())));
+		
+	}
+	public static int arithmetic_sequence(int num) {
+		// 우리가 입력받은 값을 알아야지 해당 수 보다 작거나 같은 한수의 개수를 
+		// 셀 것이므로 int num을 인자로 받아들이고 한수의 개수를 나타내는 cnt를 return
+		// 할 것이기 때문에 이런식을 작성 
+		
+		int cnt = 0;// 한수 카운팅 
+		
+		if(num < 100) {
+			// 1 ~ 99의 경우 그 수 자체가 수열이다 즉 케이스를 num이 100보다 작은 경우와
+			// 큰 경우를 나눈다.
+			// num이 100보다 작을 경우는 num을 return 해주면 된다.
+			return num;
+			
+		}else {
+			cnt = 99;
+			// 일단 100 이상의 수가 들어오면 한수의 최소 개수는 99개이다. 
+			// 그래므로 99로 초기화 해준다. 
+			if(num == 1000) {// 예외처리 필수 
+				// 입력값 중 최댓값은 1000이다. 그런데 어차피 1000은 등차수열도 아닐 뿐더러
+				// 1000보다 큰 수는 입력받지 않기 때문에 1000일 경우 num = 999;로변경해야함 
+				num = 999;
+			}
+			for(int i = 100; i <= num; i++) {
+				// 다음으로 100부터 입력받은 값까지 반복하면서 한수의 개수를 세어주어야한다.
+				
+				
+				int hun = i / 100; // 백의 자리수
+				int ten = (i / 10) % 10; // 십의 자리 수
+				int one = i % 10;
+				
+				if((hun - ten) == (ten - one)) { // 각 자릿수가 수얼을 이루면 
+					// 등차수열이므로 각 자릿수 순서대로 차이 값을 구해야 한다. 
+					
+				}
+
+			}
+
+		}
+		
+		
+		return cnt;
+	}
+
+}
