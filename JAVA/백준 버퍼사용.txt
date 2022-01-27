@@ -20,7 +20,7 @@ public class Main {
 		 // val의 int형을 string형으로 변환해준 뒤 
 		 // 해당 문자열의 문자 값 -48 또는 -0을 추출해내 int배열의 index값을 1증가시킨다.
 		 // charAt()을 쓸경우 -'0' 또는 -48을 연산해야 한다. 아니면 아스키코드에 대응하는 문자가 나온다.
-		 // string으로 저장된 문자열 중에서 한 글자만 선택해서 char타입을 변환해주는 녀석이다. 
+		 // charAt()는 string으로 저장된 문자열 중에서 한 글자만 선택해서 char타입을 변환해주는 녀석이다. 
 		 
 		for(int i=0; i < str.length(); i++) {
 			 
@@ -98,5 +98,103 @@ public class Main {
 			sum += ((arr[i] / arr[arr.length - 1]) * 100);
 		}
 		System.out.println(sum / arr.length);
+		}
+	}
+
+4번 OX 퀴즈 
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+ 
+	public static void main(String[] args) throws IOException {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		StringBuilder sb = new StringBuilder();
+		// system.out.printin()을 반복하여 호출하지 않고 StringBuilder를 이용하여 문자열을 이어준 뒤 
+		// 한 번에 출력을 해보려고 작성 
+		int test_case = Integer.parseInt(br.readLine());
+		// 첫 줄에 입력 될 testcaste를 받기 위한것 
+		// 입력 받을 시 BufferedReader가 문자열을 입력받기 때문에 Integer.pareInt()로 
+		// String에서 int로 변환 시켜주어야 한다. 
+		
+		String arr [] = new String[test_case];
+		// 테스트 케이스를 받은 걸 list에 넣어서 다음 줄 부터 배열로 출력 
+		
+		for(int i =0; i < test_case; i++) {
+			arr[i] = br.readLine();
+		}
+		
+		for(int i=0; i < test_case; i++) {
+			int cnt = 0;
+			int sum = 0;
+			
+			for (int j = 0; j < arr[i].length(); j++) {
+				if(arr[i].charAt(j) == 'O') {
+					cnt++;
+				}else {
+					cnt = 0;
+				}
+				
+				sum += cnt;	
+			}
+			sb.append(sum).append('\n');			
+		}
+		 System.out.println(sb);
+		
+		}
+	}
+
+5번 평균은 넘겠지
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+ 
+	public static void main(String[] args) throws IOException {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		int[]arr;
+		
+		int test_case = Integer.parseInt(br.readLine());
+		
+		StringTokenizer st;
+		
+		for(int i=0; i < test_case; i++) {
+			
+			st = new StringTokenizer(br.readLine(), " "); // 학생 수 및 성적 입력 
+			
+			int N = Integer.parseInt(st.nextToken()); // 학생의 수 
+													  // StringTokenizer클래스 객체에서 다음 토큰을 읽음
+			arr = new int[N];
+			
+			double sum = 0; // 성적 누적 합 변수 
+			
+			// 성적 입력부분
+			for(int j = 0; j < N; j++) {
+				int val = Integer.parseInt(st.nextToken());
+				arr[j] = val;
+				sum += val; // 성적 누적 합
+			}
+			
+			double mean = (sum / N);
+			double count = 0; // 평균 넘는 학생 수 변수
+			
+			// 평균 넘는 학생 비율 찾기 
+			for(int j =0; j <N; j++) {
+				if(arr[j] > mean) {
+					count++;
+				}
+			}
+			System.out.printf("%.3f%%\n",(count/N)*100);
+		}
+		
 		}
 	}
