@@ -1,0 +1,53 @@
+package com.coding;
+
+public class Main {
+ 
+	public static void main(String[] args) {
+		
+		// 1부터 10000까지 검사한 뒤, 해당 수를 생성자로 하는 수가 있으면 그 수를 거르는 것이다.
+		
+		//2번 함수 d를 불러와 생성자 없는 값 출력 하기 
+		boolean[] check = new boolean[10001]; // 1부터 10000이므로
+		
+		
+		for(int i = 1; i < 10001; i++) {
+			
+			int n = d(i);
+			// 1부터 10000까지 검사할 때 메인에서 d함수로 숫자를 넣어보며 return 되는 수는 해당 number를 생성자로
+			// 하는 수로 구성 할 것이다. 
+			
+			if(n < 10001) { // 10000이 넘는 수는 필요가 없음 
+				check[n] = true; // return 된 수는 생성자가 있는 수 , 즉 출력하면 안되는 수 이므로 boolean 배열을 통해 true로 바꿔준다.
+			}
+		}	
+		
+		StringBuilder sb = new StringBuilder();
+		
+		for(int i =1; i < 10001; i++) {
+			if(!check[i]) { // false 인 인덱스만 출력 // 생성자가 없는 수만 출력하겠다
+				sb.append(i).append('\n');
+			}
+		}
+		System.out.println(sb);	
+	
+	}
+	//1번 함수 d 정
+	public static int d(int number) {
+		int sum = number;
+		
+		// 먼저 number라는 수를 받게되면 number을 생성자로 하는 수를 리턴시킬 것이기 때문에 sum이란 변수를 하나 생성
+		// 그리고 초기 값은 number로 한다. 
+		
+		while(number != 0) {
+		// 일단 각 자리수를 더해주기 위해서 나머지 연산자와 나눗셈 연산자로 10단위씩 number을 줄여 갈 것이기 때문에 
+		// number가 0이 아닐 때 까지 계속 반복해준다.
+		// number의 첫 번쩨 자리수를 구하기 위 % 연산자를 사용하여 sum에 더해주고, 이후 /로 10을 줄인다.
+			
+			sum = sum + (number % 10); // 첫 째 자리수 
+			number = number/10;  // 10을 나누어 첫 째 자리를 없앤다 
+		}
+		
+		return sum;
+		// return된 수는 생성자가 있는 수, 즉 출력하면 안되는 수이므로 boolean 배열을 통해 true로 바꾸어 준다.
+	}
+}
