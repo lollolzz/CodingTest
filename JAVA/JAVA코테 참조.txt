@@ -143,4 +143,13 @@ public class note {
 			
 			}
 		
-		src.close();	
+		src.close();
+
+5. 아스키 코드 출력
+
+		Scanner in = new Scanner(System.in);
+		
+		int a = in.next().charAt(0);
+		
+		System.out.print(a);
+		 	
