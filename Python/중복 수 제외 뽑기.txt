@@ -1,0 +1,16 @@
+def solution(N):
+    dic = {}
+    # dic 효율도 좋고 hashset랑 같고, set이랑 같다 - 순서, 중복 없고 / key중복됨
+    # 자바 hashmap이 dic과 같은 중요도이다
+    answer = []
+    for i in range(len(N)):
+        dic[N[i]] = N.count(N[i])
+    print(dic)
+    for j in dic:
+        if dic.get(j) == 1: # dic의 j(key) value를 찾는 것
+            answer.append(j)
+    print(answer)
+    return answer
+
+N = [1, 2, 3, 4, 4, 3, 2, 5]
+solution(N)

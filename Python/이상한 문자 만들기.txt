@@ -1,0 +1,13 @@
+def solution(s):
+    answer = []
+    words = s.split(" ")# 공백을 포함한 문자가 들어오면 마     지막에 그 공백도 출력해줘야 한다 
+    # 주의 : 인덱스가 문자열 전체의 인덱스가 아닌 단어 별 인덱스
+    for word in words:
+        w = ""
+        for i in range(len(word)):
+            if i % 2:
+                w += word[i].lower()
+            else:
+                w += word[i].upper()
+        answer.append(w)
+    return ' '.join(answer)

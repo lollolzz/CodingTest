@@ -1,0 +1,22 @@
+def solution(x):
+    answer = True
+    x = str(x)
+    sum = 0
+    for i in range(len(x)):
+        
+        sum += int(x[i])
+        
+    x = int(x)
+    if x % sum  == 0 :
+        return True
+    else:
+        return False
+
+def solution(x):
+
+    y = sum(map(int,(list(str(x)))))
+    
+    if x%y == 0:
+        return True
+    else :
+        return False

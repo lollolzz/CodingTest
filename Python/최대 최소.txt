@@ -1,0 +1,27 @@
+def solution(n, m):
+    answer = []
+    # 최대공약수
+    # 두 수 중에 작은 수로 들어가야해 
+    # 역으로 돌리는 이유는 3이하의 숫자중에 답이 있기 때문이다 
+    # range(시작점, 끝점, 중간점)
+    # range 마지막 -1은 for문을 역순으로 돌리기 위한 것이다 
+    
+    for i in range(min(n,m), 0, -1):
+        if(n%i==0 and m%i==0):
+            answer.append(i)
+            break
+    
+    # 최소공배수
+    # +1을 해주는 이유는 인덱스 는 0부터 시작하기 때문이다.
+    최소공배수는 12부터 36까지 돌릴거니까
+    12를 3으로 나눴을때와
+    36을12로 나눴을때
+    둘다 0으로 나눠떨어져서 최소공배수!
+    i들이 두 수 보다 기본적으로 더 크니까
+    i를 두수로 나눠야 하는것같다
+    for i in range(max(n,m), (n*m)+1):
+        if(i%n==0 and i%m==0):
+            answer.append(i)
+            break
+            
+    return answer
