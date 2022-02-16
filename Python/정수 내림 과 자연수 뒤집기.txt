@@ -1,0 +1,27 @@
+1번 정수내림차순
+
+def solution(n):
+    
+    n = str(int(n))
+    a = list(n)
+    
+    a.sort(reverse = True)
+    
+    answer = int(''.join(a))
+    
+    return answer
+
+2번 자연수 뒤집어 배열로 만들기 
+
+def solution(n):
+    
+    
+    
+    n = int(n)
+    n = list(str(n))
+    p = list(reversed(n))
+
+    a = list(map(int, p))
+    answer = a
+    
+    return answer
