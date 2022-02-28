@@ -1,0 +1,24 @@
+def solution(board, moves):
+    answer = 0
+    board2 = list(map(list, zip(*board))) 
+    # 가로 배열을 세로 배열로 , 꿀기능 , 직관적 
+    stack = []
+    
+    for i in range (len(moves)):
+        tem = moves[i]-1 # 인덱스 번호로 맞춰주기 위해 
+        for j in range (len(board2[tem])):
+            if board2[tem][j] != 0:
+                stack.append(board2[tem][j])
+                # 후입선출을 사용한건 위에서 차례대로 크레인이 가지고 가기 때문 
+                board2[tem][j] = 0
+                
+                if len(stack) >= 2:
+                    if stack[-2] == stack[-1]:
+                        stack.pop() 
+                        stack.pop() 
+                        answer += 2 
+                        # 위에서 두개 터트려서 
+                        # answer에 +2를 해준것
+                break
+    
+    return answer
